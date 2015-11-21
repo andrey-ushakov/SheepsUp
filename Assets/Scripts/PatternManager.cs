@@ -36,7 +36,7 @@ public class PatternManager : MonoBehaviour {
 	void generateGrass(int pos) {
 		Camera camera = Camera.main;
 
-		Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, 0.2f, camera.nearClipPlane));
+		Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, 0.15f, camera.nearClipPlane));
 		p.x += 1;
 		p.y += 1;
 
@@ -45,7 +45,7 @@ public class PatternManager : MonoBehaviour {
 		GameObject.Instantiate(_grass, p1, Quaternion.identity);
 
 		// obstacle
-		GameObject ob1 = obstacles[Random.Range (0, 2)];
+		/*GameObject ob1 = obstacles[Random.Range (0, 2)];
 		Vector3 p2 = new Vector3(p.x + 6, p.y, p.z);
 		GameObject.Instantiate(ob1, p2, Quaternion.identity);
 
@@ -70,7 +70,7 @@ public class PatternManager : MonoBehaviour {
 		
 		// grass
 		Vector3 p7 = new Vector3(p.x + 24, p.y, p.z);
-		GameObject.Instantiate(_grass, p7, Quaternion.identity);
+		GameObject.Instantiate(_grass, p7, Quaternion.identity);*/
 
 
 		/*for(int i = 0 ; i<5; ++i) {
