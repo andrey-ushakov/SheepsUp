@@ -35,7 +35,7 @@ public class PatternManager : MonoBehaviour {
 	void generateGrass(int pos) {
 		Camera camera = Camera.main;
 		for(int i = 0 ; i<5; ++i) {
-			Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, 0, camera.nearClipPlane));
+			Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, 0.2f, camera.nearClipPlane));
 			p.x += 1;
 			p.y += 1;
 
