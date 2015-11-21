@@ -26,7 +26,7 @@ public class PatternManager : MonoBehaviour {
 		//Grass generation
 		if(curTime >= generateTime) {
 			// TODO generate grass
-			//generateGrass(1);
+			generateGrass(1);
 			generateTime += period - 1;
 		}
 		curTime += Time.deltaTime;
@@ -64,12 +64,12 @@ public class PatternManager : MonoBehaviour {
 
 		// obstacle
 		GameObject ob3 = obstacles[Random.Range (0, 2)];
-		Vector3 p6 = new Vector3(p.x + 24, p.y, p.z);
+		Vector3 p6 = new Vector3(p.x + 22, p.y, p.z);
 		GameObject.Instantiate(ob3, p6, Quaternion.identity);
 
 		
 		// grass
-		Vector3 p7 = new Vector3(p.x + 16, p.y, p.z);
+		Vector3 p7 = new Vector3(p.x + 24, p.y, p.z);
 		GameObject.Instantiate(_grass, p7, Quaternion.identity);
 
 
