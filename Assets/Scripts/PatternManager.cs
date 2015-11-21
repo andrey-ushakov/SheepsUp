@@ -5,43 +5,53 @@ using System.Collections.Generic;
 public class PatternManager : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject _grass;
+	protected GameObject _grass;
+	
+	[SerializeField]
+	protected float _y;
+	[SerializeField]
+	protected float _z;
+	[SerializeField]
+	protected float _generateInitPos;
+	[SerializeField]
+	protected float _generatePos;
+	//[SerializeField]
+	protected float generateTime;
 
 	[SerializeField]
 	List<GameObject> obstacles = new List<GameObject>();
 
-	private float period;
-	private float curTime = 0;
-	private float generateTime;
+	protected float period;
+	protected float curTime = 0;
 
 
 	void Start () {
 		period = 30 / (GlobalVariables.grassSpeed);
 		curTime	= period;
 		generateTime = period - 1;
-		generateGrass(0);
+		generateGrass(_generateInitPos);
 	}
 
 	void Update () {
 		//Grass generation
 		if(curTime >= generateTime) {
 			// TODO generate grass
-			generateGrass(1);
+			generateGrass(_generatePos);
 			generateTime += period - 1;
 		}
 		curTime += Time.deltaTime;
 	}
 
 
-	void generateGrass(int pos) {
+	protected void generateGrass(float pos) {
 		Camera camera = Camera.main;
 
-		Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, 0.15f, camera.nearClipPlane));
+		Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, _y, _z));
 		p.x += 1;
 		p.y += 1;
 
 		// grass
-		Vector3 p1 = new Vector3(p.x, p.y, p.z);
+		Vector3 p1 = new Vector3(p.x, p.y, _z);
 		GameObject.Instantiate(_grass, p1, Quaternion.identity);
 
 		// obstacle
