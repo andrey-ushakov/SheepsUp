@@ -37,7 +37,7 @@ public class PatternManager : MonoBehaviour {
 		if(curTime >= generateTime) {
 			// TODO generate grass
 			generateGrass(_generatePos);
-			generateTime += period - 1;
+			generateTime += period;
 		}
 		curTime += Time.deltaTime;
 	}

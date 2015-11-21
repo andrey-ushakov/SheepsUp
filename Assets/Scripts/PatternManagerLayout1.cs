@@ -5,9 +5,9 @@ public class PatternManagerLayout1 : PatternManager {
 
 	// Use this for initialization
 	void Start () {
-		period = 30 / (GlobalVariables.layout1Speed);
+		period = 45 / (GlobalVariables.layout1Speed);
 		curTime	= period;
-		generateTime = period - 1;
+		generateTime = period;
 		generateGrass(_generateInitPos);
 	}
 	
