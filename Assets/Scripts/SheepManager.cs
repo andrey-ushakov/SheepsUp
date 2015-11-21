@@ -2,15 +2,26 @@
 using System.Collections;
 
 public class SheepManager : MonoBehaviour {
+	public int sheepType = 0; //1 = black, 2 = white
 	public Rigidbody2D rb;
 	public Animator am;
 
 	void OnEnable() {
-		InputManager.buttonAClicked += jump;
+		if (this.sheepType == 1) {
+			InputManager.buttonAClicked += jump;
+		}
+		else if (this.sheepType == 2) {
+			InputManager.buttonBClicked += jump;
+		}
 	}
 
 	void Disable() {
-		InputManager.buttonAClicked -= jump;
+		if (this.sheepType == 1) {
+			InputManager.buttonAClicked -= jump;
+		}
+		else if (this.sheepType == 2) {
+			InputManager.buttonBClicked -= jump;
+		}
 	}
 
 	// Use this for initialization
