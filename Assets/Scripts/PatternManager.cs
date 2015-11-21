@@ -18,17 +18,19 @@ public class PatternManager : MonoBehaviour {
 	//[SerializeField]
 	protected float generateTime;
 
+	private int ind = 0;
+
 	[SerializeField]
-	List<GameObject> obstacles = new List<GameObject>();
+	List<GameObject> patterns = new List<GameObject>();
 
 	protected float period;
 	protected float curTime = 0;
 
 
 	void Start () {
-		period = 30 / (GlobalVariables.grassSpeed);
-		curTime	= period;
-		generateTime = period - 1;
+		period = 40 / (GlobalVariables.grassSpeed);
+		curTime	= period/2+1.5f;
+		generateTime = period ;
 		generateGrass(_generateInitPos);
 	}
 
@@ -44,6 +46,11 @@ public class PatternManager : MonoBehaviour {
 
 
 	protected void generateGrass(float pos) {
+
+		if (ind >= patterns.Count) {
+			ind = 0;
+		}
+
 		Camera camera = Camera.main;
 
 		Vector3 p = camera.ViewportToWorldPoint(new Vector3(pos, _y, _z));
@@ -52,8 +59,9 @@ public class PatternManager : MonoBehaviour {
 
 		// grass
 		Vector3 p1 = new Vector3(p.x, p.y, _z);
-		GameObject.Instantiate(_grass, p1, Quaternion.identity);
+		GameObject.Instantiate(patterns[ind], p1, Quaternion.identity);
 
+		ind++;
 		// obstacle
 		/*GameObject ob1 = obstacles[Random.Range (0, 2)];
 		Vector3 p2 = new Vector3(p.x + 6, p.y, p.z);
