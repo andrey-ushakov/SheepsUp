@@ -7,6 +7,8 @@ public static class GlobalVariables {
 	public static float grassSpeed = 2f;
 	[SerializeField]
 	public static float layout1Speed = 1.5f;
+	[SerializeField]
+	public static float layout2Speed = 8f;
 
 	/*void Start () {
 	
