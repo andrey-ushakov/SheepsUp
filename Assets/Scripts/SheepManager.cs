@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SheepManager : MonoBehaviour {
 	public Rigidbody2D rb;
+	public Animator am;
 
 	void OnEnable() {
 		InputManager.buttonAClicked += jump;
@@ -15,6 +16,7 @@ public class SheepManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		am = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +29,8 @@ public class SheepManager : MonoBehaviour {
 	}
 
 	void jump(object sender){
-		rb.AddForce(new Vector2(0,10), ForceMode2D.Impulse);
+		am.Play ("Jump_In");
+		rb.AddForce(new Vector2(0,14), ForceMode2D.Impulse);
 	}
 	
 }
