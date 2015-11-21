@@ -3,7 +3,9 @@ using System.Collections;
 
 public class ObstacleManager : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("The fucking sheep touch the obstacle");
+		Debug.Log ("Destruction");
+		SheepManager sm = other.GetComponent<SheepManager> ();
+		sm.die ();
 	}
 
 	// Use this for initialization

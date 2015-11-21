@@ -28,6 +28,10 @@ public class SheepManager : MonoBehaviour {
 
 	}
 
+	public void die(){
+		am.Play ("Destruction");
+	}
+
 	void jump(object sender){
 		am.Play ("Jump_In");
 		rb.AddForce(new Vector2(0,14), ForceMode2D.Impulse);
