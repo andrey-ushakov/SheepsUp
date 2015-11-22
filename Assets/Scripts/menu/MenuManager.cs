@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour {
 	public GUIStyle mystyle;
 
 	void Start () {
-
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 
 	void OnGUI() {
