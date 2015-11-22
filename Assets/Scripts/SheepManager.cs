@@ -2,10 +2,12 @@
 using System.Collections;
 
 public delegate void SheepDieEventHandler(object sender);
+public delegate void SheepJumpEventHandler(object sender);
 
 public class SheepManager : MonoBehaviour {
 
 	public static event SheepDieEventHandler sheepDie;
+	public static event SheepJumpEventHandler sheepJump;
 
 	public int sheepType = 0; //1 = black, 2 = white
 	public Rigidbody2D rb;
@@ -133,6 +135,7 @@ public class SheepManager : MonoBehaviour {
 			return;
 		am.Play ("Jump_In");
 		rb.AddForce(new Vector2(0,14), ForceMode2D.Impulse);
+		sheepJump (this);
 	}
 	
 }
