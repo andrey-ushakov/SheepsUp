@@ -13,7 +13,6 @@ public class Title : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Vector3 p = Camera.main.ViewportToWorldPoint (new Vector3(_x, _y, _z));
-		Debug.Log (p);
 		this.transform.position = p;
 
 	}
