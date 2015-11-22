@@ -22,9 +22,13 @@ public class InputManager : MonoBehaviour {
 		Camera camera = GetComponent<Camera>();
 		Vector3 p1 = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.8f, 1f));
 		Vector3 p2 = camera.ViewportToScreenPoint (new Vector3 (0.8f, 0.8f, 1f));
-		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.20f, 0.20f, 1f));
+		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.1f, 1f));
 	
 		//Button buttonA = 
+		mystyle.fixedWidth = 0;
+		mystyle.fixedHeight = 0;
+		mystyle.stretchWidth = true;
+		mystyle.stretchHeight = true;
 		if (GUI.Button (new Rect (p1.x, p1.y, size.x, size.x), buttonA, mystyle)) {
 			OnButtonAClicked();
 		}
@@ -35,6 +39,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	public void Awake(){
+
 		Input.multiTouchEnabled = false;
 	}
 
