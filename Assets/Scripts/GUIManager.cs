@@ -32,15 +32,15 @@ public class GUIManager : MonoBehaviour {
 	void OnGUI() {
 		Camera camera = Camera.main;
 
-		Vector3 position = camera.ViewportToScreenPoint (new Vector3 (0.3f, 0.83f, 1f));
-		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.4f, 0.1f, 1f));
+		Vector3 position = camera.ViewportToScreenPoint (new Vector3 (0.27f, 0.83f, 1f));
+		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.46f, 0.1f, 1f));
 
 		DrawProgress (position.x, position.y, size.x, size.y, gm.dreamStatus);
 
 		position = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.1f, 1f));
-		size = camera.ViewportToScreenPoint (new Vector3 (0.2f, 0.2f, 1f));
+		size = camera.ViewportToScreenPoint (new Vector3 (0.3f, 0.3f, 1f));
 
-		DrawScore (position.x, position.y, size.x, size.y, gm.getTime());
+		DrawScore (position.x, position.y, size.x, size.x, gm.getTime());
 
 	}
 

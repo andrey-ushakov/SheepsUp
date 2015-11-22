@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		dreamStatus = 1;
+		timer = 0;
+
 	}
 
 	void OnEnable(){
