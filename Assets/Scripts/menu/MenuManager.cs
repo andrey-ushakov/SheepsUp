@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour {
 
 	void OnGUI() {
 		Camera camera = Camera.main;
-		Vector3 p1 = camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f, 1f));
+		Vector3 p1 = camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.6f, 1f));
 		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.2f, 0.2f, 1f));
 		
 		//Debug.Log (p1);
