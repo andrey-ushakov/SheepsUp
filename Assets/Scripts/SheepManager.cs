@@ -22,6 +22,14 @@ public class SheepManager : MonoBehaviour {
 
 	public bool arrive;
 
+	void OnEnable(){
+		EnableInput ();
+	}
+
+	void OnDisable(){
+		DisableInput ();
+	}
+
 	void EnableInput() {
 		if (this.sheepType == 1) {
 			InputManager.buttonAClicked += jump;
@@ -102,7 +110,7 @@ public class SheepManager : MonoBehaviour {
 		sheepDie (this);
 		am.Play ("Destruction");
 		DisableInput ();
-		Invoke ("disableSelf", 2.5f);
+		disableSelf ();
 		Invoke ("relife", 4.0f);
 	}
 
