@@ -145,8 +145,9 @@ public class SheepManager : MonoBehaviour {
 		foreach (BoxCollider2D collider in colliders) {
 			collider.enabled = false;
 		}
-		Rigidbody2D rigdbody = gameObject.GetComponent<Rigidbody2D> ();
-		rigdbody.gravityScale = 0;
+		rb.gravityScale = 0;
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = 0;
 	}
 
 	public void enableSelf(){
@@ -154,8 +155,7 @@ public class SheepManager : MonoBehaviour {
 		foreach (BoxCollider2D collider in colliders) {
 			collider.enabled = true;
 		}
-		Rigidbody2D rigdbody = gameObject.GetComponent<Rigidbody2D> ();
-		rigdbody.gravityScale = 2;
+		rb.gravityScale = 2;
 	}
 
 	void jump(object sender){
