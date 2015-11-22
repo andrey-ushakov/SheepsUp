@@ -1,7 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public delegate void GameOverEventHandler(object sender);
+
+public class GameOverEventArgs: EventArgs{
+	public string score = "";
+}
+
 public class GameManager : MonoBehaviour {
+	public static event GameOverEventHandler gameOverEvent;
+
 	public float dreamStatus;
 	public float timer;
 	public bool gameOver;
@@ -9,13 +17,14 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
-		dreamStatus = 1f;
-		gameOver = false;
-		timer = 0;
 	}
 
 	void OnEnable(){
 		SheepManager.sheepDie += sheepDieHandler;
+	}
+
+	void OnDisable(){
+		SheepManager.sheepDie -= sheepDieHandler;
 	}
 
 	// Update is called once per frame
@@ -28,6 +37,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void sheepDieHandler(object sender){
+		if (dreamStatus <= 0.2) {
+			dreamStatus = 0;
+			gameOver = true;
+			OnGameOver(this, getTime());
+		}
 		dreamStatus -= 0.2f;
 	}
 
@@ -49,5 +63,15 @@ public class GameManager : MonoBehaviour {
 		return time;
 	}
 
-
+	protected virtual void OnGameOver(string score)
+	{
+		if (gameOverEvent != null)
+		{
+			GameOverEventArgs a = new GameOverEventArgs();
+			a.score = score;
+			gameOverEvent(this, a);
+		}
+	}
+	
+	
 }
