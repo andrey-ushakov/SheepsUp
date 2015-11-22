@@ -16,7 +16,7 @@ public class MenuManager : MonoBehaviour {
 		
 		Debug.Log (p1);
 		
-		if (GUI.Button (new Rect (p1.x-100, p1.y, size.x, size.y), button, mystyle)) {
+		if (GUI.Button (new Rect (p1.x-size.x/2, p1.y, size.x, size.y), button, mystyle)) {
 			Play();
 		}
 	}

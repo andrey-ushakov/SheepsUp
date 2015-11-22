@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	protected virtual void OnGameOver(string score) {
+		GlobalVariables.score = score;
 		Application.LoadLevel("game_over");
 
 		if (gameOverEvent != null) {

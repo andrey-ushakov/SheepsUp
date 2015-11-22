@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class GameOver : MonoBehaviour {
+	[SerializeField]
+	public Texture button;
+	[SerializeField]
+	public GUIStyle mystyle;
+
 	GUIStyle style;
 	Font myFont;
 
@@ -20,55 +25,27 @@ public class GameOver : MonoBehaviour {
 
 
 	void DrawFinalTime(float x, float y, float l, float h, string text){
-		GUI.Label (new Rect (x - l/2, y, l, h), text, style);
+		GUI.Label (new Rect (x, y, l, h), text, style);
 	}
 
 
 	void OnGUI() {
 		Camera camera = Camera.main;
-		Vector3 position = camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.7f, 1f));
-		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.1f, 1f));
-		DrawFinalTime (position.x, position.y, size.x, size.y, "1:11");
-	}
-
-	/*bool isFalling = false;
-
-	[SerializeField]
-	private float speed = 0.5f;
-	[SerializeField]
-	GameObject gameOverTexture;
-
-	void OnEnable() {
-		GameManager.gameOverEvent += OnGameOver;
-	}
-	
-	void OnDisable() {
-		GameManager.gameOverEvent -= OnGameOver;
-	}
+		Vector3 position = camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.65f, 1f));
+		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.15f, 0.15f, 1f));
+		DrawFinalTime (position.x - size.x/2, position.y, size.x, size.y, GlobalVariables.score);
 
 
-	void Start () {
-	
-	}
+		Vector3 p1 = camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.8f, 1f));
+		Vector3 size1 = camera.ViewportToScreenPoint (new Vector3 (0.2f, 0.2f, 1f));
 
-	void Update () {
-		if (isFalling) {
-			Debug.Log ("Fall");
-			if (gameOverTexture.transform.position.y > 0) {
-				Debug.Log ("Move");
-				Vector3 p = gameOverTexture.transform.position;
-				p.y -= Time.deltaTime * speed;
-				gameOverTexture.transform.position = p;
-			} else {
-			}
+		if (GUI.Button (new Rect (p1.x - size1.x/2, p1.y, size1.x, size1.y), button, mystyle)) {
+			Play();
 		}
 	}
 
-
-	void OnGameOver(object sender, GameOverEventArgs args) {
-		Debug.Log (args.score);
-		isFalling = true;
-	}*/
-
+	public void Play () {
+		Application.LoadLevel("game");
+	}
 
 }

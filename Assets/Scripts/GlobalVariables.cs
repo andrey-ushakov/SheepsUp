@@ -12,6 +12,9 @@ public static class GlobalVariables {
 	[SerializeField]
 	public static float layout3Speed = 2f;
 
+
+	public static string score = "";
+
 	/*void Start () {
 	
 	}
