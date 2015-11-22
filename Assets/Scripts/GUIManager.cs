@@ -10,14 +10,22 @@ public class GUIManager : MonoBehaviour {
 	public Texture bar_content;
 	public Texture bar_pin;
 
+	GUIStyle style;
+	Font myFont;
+
 	// Use this for initialization
 	void Awake(){
 		gm = gameObject.GetComponent<GameManager> ();
 	}
 
 	void Start () {
+		style = new GUIStyle();
+		myFont = (Font)Resources.Load("Fonts/snaphand", typeof(Font));
+		style.fontSize = 36;
+		style.font = myFont;
+
 		dreamStatus = gm.dreamStatus;
-		score = gm.score;
+
 
 		dreamStatus = 1f;
 	}
@@ -29,6 +37,11 @@ public class GUIManager : MonoBehaviour {
 		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.4f, 0.1f, 1f));
 
 		DrawProgress (position.x, position.y, size.x, size.y, 1f);
+
+		position = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.1f, 1f));
+		size = camera.ViewportToScreenPoint (new Vector3 (0.2f, 0.2f, 1f));
+
+		DrawScore (position.x, position.y, size.x, size.y, "test 01231");
 
 	}
 
@@ -45,5 +58,9 @@ public class GUIManager : MonoBehaviour {
 		GUI.DrawTexture(new Rect(x + l/7, y+ h/3, l - l/7, h/3), bar_content);
 		GUI.DrawTexture(new Rect(x, y, l, h), bar_broder);
 		GUI.DrawTexture (new Rect (x + l / 7f + (l * 0.84f)  * progress, y, l / 50, h), bar_pin);
+	}
+
+	void DrawScore(float x, float y, float l, float h, string text){
+		GUI.Label (new Rect (x, y, l, h), text, style);
 	}
 }
