@@ -16,9 +16,9 @@ public class SheepManager : MonoBehaviour {
 
 	float blackSheepArrivePos;
 	float whiteSheepArrivePos;
-	Vector3 speed;
-	Vector3 blackInitPos;
-	Vector3 whiteInitPos;
+	Vector3 speed = new Vector3();
+	Vector3 blackInitPos = new Vector3();
+	Vector3 whiteInitPos = new Vector3();
 
 	int status; // 0: stay, 1: come, 2: leave
 
@@ -49,6 +49,8 @@ public class SheepManager : MonoBehaviour {
 	}
 
 	void Awake() {
+
+
 		Camera camera = Camera.main;
 		speed = camera.ViewportToWorldPoint (new Vector3 (0.7f, 0.5f, 0f));
 		speed.z = 0f;
@@ -78,6 +80,7 @@ public class SheepManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (speed);
 		if (status == 1) {
 			comeToScreen ();
 		} else if (status == 2) {
@@ -131,7 +134,7 @@ public class SheepManager : MonoBehaviour {
 	}
 
 	public void checkInWindow(){
-		if (transform.position.y <= -3 || transform.position.y >= 5) {
+		if (gameObject.transform.position.y <= -3 || gameObject.transform.position.y >= 5) {
 			disableSelf();
 			Invoke ("relife", 4.0f);
 		}
