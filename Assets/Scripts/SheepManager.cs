@@ -72,6 +72,7 @@ public class SheepManager : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 		am = GetComponent<Animator> ();
 
+		enableSelf ();
 		arrive = false;
 	}
 	
