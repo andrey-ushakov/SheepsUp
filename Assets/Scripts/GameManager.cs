@@ -64,10 +64,11 @@ public class GameManager : MonoBehaviour {
 		return time;
 	}
 
-	protected virtual void OnGameOver(string score)
-	{
-		if (gameOverEvent != null)
-		{
+	protected virtual void OnGameOver(string score) {
+		GlobalVariables.score = score;
+		Application.LoadLevel("game_over");
+
+		if (gameOverEvent != null) {
 			GameOverEventArgs a = new GameOverEventArgs();
 			a.score = score;
 			gameOverEvent(this, a);
