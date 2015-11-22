@@ -16,6 +16,9 @@ public class InputManager : MonoBehaviour {
 	public static event ButtonBClickedEventHandler buttonBClicked;
 
 	void OnGUI() {
+
+		//buttonA.mat
+
 		Camera camera = GetComponent<Camera>();
 		Vector3 p1 = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.8f, 1f));
 		Vector3 p2 = camera.ViewportToScreenPoint (new Vector3 (0.8f, 0.8f, 1f));
