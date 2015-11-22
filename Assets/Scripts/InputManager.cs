@@ -19,22 +19,20 @@ public class InputManager : MonoBehaviour {
 		Camera camera = GetComponent<Camera>();
 		Vector3 p1 = camera.ViewportToScreenPoint (new Vector3 (0.1f, 0.8f, 1f));
 		Vector3 p2 = camera.ViewportToScreenPoint (new Vector3 (0.8f, 0.8f, 1f));
+		Vector3 size = camera.ViewportToScreenPoint (new Vector3 (0.15f, 0.15f, 1f));
 
 		//Button buttonA = 
-		if (GUI.Button (new Rect (p1.x, p1.y, 100, 100), buttonA, mystyle)) {
+		if (GUI.Button (new Rect (p1.x, p1.y, size.x, size.y), buttonA, mystyle)) {
 			OnButtonAClicked();
 		}
 		//Button buttonB = 
-		if (GUI.Button (new Rect (p2.x, p2.y, 100, 100), buttonB, mystyle)){
+		if (GUI.Button (new Rect (p2.x, p2.y, size.x, size.y), buttonB, mystyle)){
 			OnButtonBClicked();
 		}
-
-
 	}
 
 
 	public void OnButtonAClicked(){
-		Debug.Log ("ButtonA clicked!!!!");
 		if (buttonAClicked != null)
 		{
 			buttonAClicked(this);

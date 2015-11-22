@@ -129,6 +129,7 @@ public class SheepManager : MonoBehaviour {
 	}
 
 	void jump(object sender){
+
 		am.Play ("Jump_In");
 		rb.AddForce(new Vector2(0,14), ForceMode2D.Impulse);
 	}
