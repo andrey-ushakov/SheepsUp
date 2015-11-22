@@ -20,7 +20,7 @@ public class SheepManager : MonoBehaviour {
 	Vector3 blackInitPos;
 	Vector3 whiteInitPos;
 
-	public bool arrive;
+	int status; // 0: stay, 1: come, 2: leave
 
 	void OnEnable(){
 		EnableInput ();
@@ -54,8 +54,8 @@ public class SheepManager : MonoBehaviour {
 		speed.z = 0f;
 		Vector3 position1 = camera.ViewportToWorldPoint (new Vector3 (0.2f, 0.2f, 1f));
 		Vector3 position2 = camera.ViewportToWorldPoint (new Vector3 (0.4f, 0.2f, 1f));
-		blackInitPos = camera.ViewportToWorldPoint (new Vector3 (0.0f, 0.25f, 7f));
-		whiteInitPos = camera.ViewportToWorldPoint (new Vector3 (0.1f, 0.25f, 7f));
+		blackInitPos = camera.ViewportToWorldPoint (new Vector3 (0.0f, 0.30f, 7f));
+		whiteInitPos = camera.ViewportToWorldPoint (new Vector3 (0.1f, 0.30f, 7f));
 
 		blackSheepArrivePos = position1.x;
 		whiteSheepArrivePos = position2.x;
@@ -73,22 +73,23 @@ public class SheepManager : MonoBehaviour {
 		am = GetComponent<Animator> ();
 
 		enableSelf ();
-		arrive = false;
+		status = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!arrive) {
-			comeToScreen();
+		if (status == 1) {
+			comeToScreen ();
+		} else if (status == 2) {
+			leaveFromScreen ();
 		}
-
 	}
 
 	void comeToScreen(){
 		switch (sheepType) {
 		case 1:
 			if (transform.position.x >= blackSheepArrivePos){
-				arrive = true;
+				status = 0;
 				EnableInput();
 				enableSelf();
 				return;
@@ -96,7 +97,7 @@ public class SheepManager : MonoBehaviour {
 			break;
 		case 2:
 			if (transform.position.x >= whiteSheepArrivePos){
-				arrive = true;
+				status = 0;
 				EnableInput();
 				enableSelf();
 				return;
@@ -107,18 +108,32 @@ public class SheepManager : MonoBehaviour {
 		gameObject.transform.position += speed * Time.deltaTime;
 	}
 
+	void leaveFromScreen(){
+		if (transform.position.x < -10.5f)
+			return;
+		gameObject.transform.position -= speed * Time.deltaTime;
+	}
+
 	public void die(){
 		sheepDie (this);
 		am.Play ("Destruction");
 		DisableInput ();
 		disableSelf ();
+		status = 2;
 		Invoke ("relife", 4.0f);
 	}
 
 	public void relife(){
 		am.Play ("Marche");
 		gameObject.transform.position = blackInitPos;
-		arrive = false;
+		status = 1;
+	}
+
+	public void checkInWindow(){
+		if (transform.position.y <= -3 || transform.position.y >= 5) {
+			disableSelf();
+			Invoke ("relife", 4.0f);
+		}
 	}
 
 	public void disableSelf(){
