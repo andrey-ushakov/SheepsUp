@@ -54,8 +54,8 @@ public class SheepManager : MonoBehaviour {
 		speed.z = 0f;
 		Vector3 position1 = camera.ViewportToWorldPoint (new Vector3 (0.2f, 0.2f, 1f));
 		Vector3 position2 = camera.ViewportToWorldPoint (new Vector3 (0.4f, 0.2f, 1f));
-		blackInitPos = camera.ViewportToWorldPoint (new Vector3 (0.0f, 0.30f, 7f));
-		whiteInitPos = camera.ViewportToWorldPoint (new Vector3 (0.1f, 0.30f, 7f));
+		blackInitPos = camera.ViewportToWorldPoint (new Vector3 (0.0f, 0.255f, 7f));
+		whiteInitPos = camera.ViewportToWorldPoint (new Vector3 (0.1f, 0.255f, 7f));
 
 		blackSheepArrivePos = position1.x;
 		whiteSheepArrivePos = position2.x;
@@ -118,7 +118,7 @@ public class SheepManager : MonoBehaviour {
 		sheepDie (this);
 		am.Play ("Destruction");
 		DisableInput ();
-		disableSelf ();
+		Invoke ("disableSelf", 2.0f);
 		status = 2;
 		Invoke ("relife", 4.0f);
 	}
@@ -126,6 +126,7 @@ public class SheepManager : MonoBehaviour {
 	public void relife(){
 		am.Play ("Marche");
 		gameObject.transform.position = blackInitPos;
+		gameObject.transform.rotation = Quaternion.Euler (0, 0, 0);
 		status = 1;
 	}
 
