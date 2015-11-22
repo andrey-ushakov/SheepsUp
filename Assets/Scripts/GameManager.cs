@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
-public delegate void GameOverEventHandler(object sender);
+public delegate void GameOverEventHandler(object sender, GameOverEventArgs args);
 
 public class GameOverEventArgs: EventArgs{
 	public string score = "";
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour {
 		if (dreamStatus <= 0.2) {
 			dreamStatus = 0;
 			gameOver = true;
-			OnGameOver(this, getTime());
+			OnGameOver(getTime());
 		}
 		dreamStatus -= 0.2f;
 	}
