@@ -63,8 +63,14 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown (KeyCode.A)) {
+			OnButtonAClicked();
+		}
+		if (Input.GetKeyDown (KeyCode.P)) {
+			OnButtonBClicked();
+		}
 	}
+
 
 	//public Texture btnTexture;
 

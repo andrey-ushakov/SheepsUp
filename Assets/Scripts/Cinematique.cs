@@ -9,7 +9,7 @@ public class Cinematique : MonoBehaviour {
 	private float zoom = 10f;
 
 	void Start () {
-	
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 	
 	void Update () {
