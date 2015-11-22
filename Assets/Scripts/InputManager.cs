@@ -31,6 +31,9 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
+	public void Awake(){
+		Input.multiTouchEnabled = false;
+	}
 
 	public void OnButtonAClicked(){
 		if (buttonAClicked != null)
