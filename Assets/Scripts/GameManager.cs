@@ -12,13 +12,22 @@ public class GameManager : MonoBehaviour {
 		gameOver = false;
 		timer = 0;
 	}
-	
+
+	void OnEnable(){
+		SheepManager.sheepDie += sheepDieHandler;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (gameOver == false) {
 			timer += Time.deltaTime;
-			dreamStatus += 0.05f * Time.deltaTime;
+			if (dreamStatus < 1)
+				dreamStatus += 0.025f * Time.deltaTime;
 		}
+	}
+
+	void sheepDieHandler(object sender){
+		dreamStatus -= 0.2f;
 	}
 
 	public string getTime(){

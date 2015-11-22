@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public delegate void SheepDieEventHandler(object sender);
+
 public class SheepManager : MonoBehaviour {
+
+	public static event SheepDieEventHandler sheepDie;
+
 	public int sheepType = 0; //1 = black, 2 = white
 	public Rigidbody2D rb;
 	public Animator am;
@@ -92,9 +97,10 @@ public class SheepManager : MonoBehaviour {
 	}
 
 	public void die(){
+		sheepDie (this);
 		am.Play ("Destruction");
 		DisableInput ();
-		Invoke ("disableSelf", 2.0f);
+		Invoke ("disableSelf", 2.5f);
 		Invoke ("relife", 4.0f);
 	}
 
