@@ -80,7 +80,6 @@ public class SheepManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (speed);
 		if (status == 1) {
 			comeToScreen ();
 		} else if (status == 2) {

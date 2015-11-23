@@ -4,7 +4,6 @@ using System.Collections;
 public class GrassMovement : MonoBehaviour {
 
 	void Start () {
-	
 	}
 	
 	void Update () {
